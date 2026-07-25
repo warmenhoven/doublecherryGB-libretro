@@ -47,6 +47,8 @@ SOURCES_CXX := \
 
 
 SOURCES_C := \
+    $(LIBRETRO_COMM_DIR)/encodings/encoding_utf.c \
+    $(LIBRETRO_COMM_DIR)/encodings/encoding_crc32.c \
     $(LIBRETRO_COMM_DIR)/net/net_socket.c \
     $(LIBRETRO_COMM_DIR)/net/net_compat.c \
     $(LIBRETRO_COMM_DIR)/net/net_http.c \
