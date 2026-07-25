@@ -1,6 +1,6 @@
 /build/
 /libmobile.pc
-/mobile_config.h
+#/mobile_config.h
 
 # Autotools artifacts
 /Makefile.in
