@@ -1,5 +1,4 @@
-﻿
-MAKEFILE_COMM_DIR := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
+﻿MAKEFILE_COMM_DIR := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
 CORE_DIR := $(MAKEFILE_COMM_DIR)
 LIBRETRO_COMM_DIR := $(CORE_DIR)/extern/libretro-common
 
@@ -76,15 +75,16 @@ SOURCES_C += \
     $(CORE_DIR)/extern/libmobile/serial.c \
     $(CORE_DIR)/extern/libmobile/util.c
 
-INCFLAGS := -I$(CORE_DIR) \
-            -I$(CORE_DIR)/gb_core \
-            -I$(CORE_DIR)/libretro \
-            -I$(CORE_DIR)/extern/libretro-common/include \
-            -I$(CORE_DIR)/extern/libmobile \
-            -I$(CORE_DIR)/extern/stb
+INCFLAGS := -I$(abspath $(CORE_DIR)) \
+            -I$(abspath $(CORE_DIR)/gb_core) \
+            -I$(abspath $(CORE_DIR)/libretro) \
+            -I$(abspath $(CORE_DIR)/extern/libretro-common/include) \
+            -I$(abspath $(CORE_DIR)/extern/libmobile) \
+            -isystem $(abspath $(CORE_DIR)/extern/libmobile) \
+            -I$(abspath $(CORE_DIR)/extern/stb)
 
 ifneq (,$(findstring msvc,$(platform)))
-    INCFLAGS += -I$(LIBRETRO_COMM_DIR)/include/compat/msvc
+    INCFLAGS += -I$(abspath $(LIBRETRO_COMM_DIR)/include/compat/msvc)
 endif
 
 DEFINES := -DBUILD_VERSION=\"$(GIT_VERSION)\" -D__LIBRETRO__ -DNDEBUG -DMOBILE_LIBCONF_USE
