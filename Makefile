@@ -536,7 +536,7 @@ CORE_DIR := .
 
 include Makefile.common
 
-OBJECTS := $(SOURCES_CXX:.cpp=.o)
+OBJECTS := $(SOURCES_CXX:.cpp=.o) $(SOURCES_C:.c=.o)
 
 ifeq ($(DEBUG), 1)
 ifneq (,$(findstring msvc,$(platform)))
