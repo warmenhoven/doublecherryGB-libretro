@@ -245,6 +245,7 @@ libretro-build-ctr:
     - .libretro-ctr-static-retroarch-master
     - .core-defs
 
+
 # Nintendo WiiU
 #libretro-build-wiiu:
 #  extends:

@@ -1,8 +1,5 @@
 DEBUG = 0
 
-
-# ==============================================================================
-
 ifeq ($(platform),)
 platform = unix
 ifeq ($(shell uname -a),)
@@ -532,22 +529,14 @@ else
    CC ?= gcc
    CXX ?= g++
    SHARED := -shared -Wl,--version-script=libretro/link.T
-   LDFLAGS += -static-libgcc -static-libstdc++ -lwinmm -lws2_32
+   LDFLAGS += -static-libgcc -static-libstdc++ -lwinmm
 endif
 
-CORE_DIR := $(CURDIR)
+CORE_DIR := .
 
 include Makefile.common
 
-# Append missing libretro-common files needed for Windows builds
-ifneq (,$(findstring win,$(platform)))
-   SOURCES_C += extern/libretro-common/encodings/utf.c \
-                extern/libretro-common/compat/compat_fopen.c \
-                extern/libretro-common/compat/compat_dir.c \
-                extern/libretro-common/file/file_path_io.c
-endif
-
-OBJECTS := $(SOURCES_CXX:.cpp=.o) $(SOURCES_C:.c=.o)
+OBJECTS := $(SOURCES_CXX:.cpp=.o)
 
 ifeq ($(DEBUG), 1)
 ifneq (,$(findstring msvc,$(platform)))
@@ -642,40 +631,23 @@ $(LIBRARY_NAME)_CFLAGS += $(CFLAGS) $(COMMON_FLAGS)
 $(LIBRARY_NAME)_CXXFLAGS += $(CXXFLAGS) $(COMMON_FLAGS)
 ${LIBRARY_NAME}_FILES = $(SOURCES_CXX) $(SOURCES_C)
 include $(THEOS_MAKE_PATH)/library.mk
-
 else
-# 'all' hängt jetzt von der config-Headerdatei ab
-all: extern/libmobile/mobile_config.h $(TARGET)
-
-# Falls die .in-Datei fehlt, holen wir erst die Submodule
-extern/libmobile/mobile_config.h.in:
-	@echo "[INFO] libmobile source missing. Initializing git submodules..."
-	git submodule update --init --recursive
-
-# Sobald die .in-Datei existiert (oder geholt wurde), kopieren wir sie
-extern/libmobile/mobile_config.h: extern/libmobile/mobile_config.h.in
-	@if [ -f extern/libmobile/mobile_config.h.in ]; then \
-	   cp extern/libmobile/mobile_config.h.in extern/libmobile/mobile_config.h; \
-	else \
-	   echo "ERROR: Submodule could not be fetched. Creating dummy config."; \
-	   touch extern/libmobile/mobile_config.h; \
-	fi
-
-$(TARGET): $(OBJECTS) $(LIBMOBILE)
+all: $(TARGET)
+$(TARGET): $(OBJECTS)
 ifeq ($(STATIC_LINKING), 1)
 	$(AR) rcs $@ $(OBJECTS)
 else
-	$(LD) $(LINKOUT) $@ $(SHARED) $(OBJECTS) $(LDFLAGS) $(LIBS)
+	$(LD) $(LINKOUT)$@ $(SHARED) $(OBJECTS) $(LDFLAGS) $(LIBS)
 endif
 
 %.o: %.cpp
-	$(CXX) -c $(OBJOUT) $@ $< $(CXXFLAGS)
+	$(CXX) -c $(OBJOUT)$@ $< $(CXXFLAGS)
 
 %.o: %.c
-	$(CC) -c $(OBJOUT) $@ $< $(CFLAGS)
+	$(CC) -c $(OBJOUT)$@ $< $(CFLAGS)
 
 clean:
 	rm -f $(TARGET) $(OBJECTS)
 
-.PHONY: clean all
+.PHONY: clean
 endif
