@@ -529,7 +529,7 @@ else
    CC ?= gcc
    CXX ?= g++
    SHARED := -shared -Wl,--version-script=libretro/link.T
-   LDFLAGS += -static-libgcc -static-libstdc++ -lwinmm
+   LDFLAGS += -static-libgcc -static-libstdc++ -lwinmm -lws2_32 -liphlpapi
 endif
 
 CORE_DIR := .

@@ -1,5 +1,8 @@
-﻿MAKEFILE_COMM_DIR := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
-CORE_DIR := $(MAKEFILE_COMM_DIR)
+﻿CORE_DIR ?= $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
+ifeq ($(CORE_DIR),)
+   CORE_DIR := .
+endif
+
 LIBRETRO_COMM_DIR := $(CORE_DIR)/extern/libretro-common
 
 SOURCES_CXX := \
@@ -55,6 +58,9 @@ SOURCES_C := \
     $(LIBRETRO_COMM_DIR)/time/rtime.c \
     $(LIBRETRO_COMM_DIR)/file/config_file.c \
     $(LIBRETRO_COMM_DIR)/file/file_path.c \
+    $(LIBRETRO_COMM_DIR)/file/file_path_io.c \
+    $(LIBRETRO_COMM_DIR)/file/retro_dirent.c \
+    $(LIBRETRO_COMM_DIR)/compat/fopen_utf8.c \
     $(LIBRETRO_COMM_DIR)/lists/dir_list.c \
     $(LIBRETRO_COMM_DIR)/lists/string_list.c \
     $(LIBRETRO_COMM_DIR)/string/stdstring.c \
@@ -83,7 +89,7 @@ INCFLAGS := -I$(abspath $(CORE_DIR)) \
             -isystem $(abspath $(CORE_DIR)/extern/libmobile) \
             -I$(abspath $(CORE_DIR)/extern/stb)
 
-ifneq (,$(findstring msvc,$(platform)))
+ifneq (,$(findstring msvc200,$(platform)))
     INCFLAGS += -I$(abspath $(LIBRETRO_COMM_DIR)/include/compat/msvc)
 endif
 
