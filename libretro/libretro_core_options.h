@@ -122,6 +122,10 @@ static struct retro_core_option_v2_definition core_options_us[] = {
                 {"7", "x7 (1120p)"},
                 {"8", "x8 (1280p)"},
                 {"9", "x9 (1440p)"},
+                {"10", "x9 (1600p)"},
+                {"11", "x9 (1760p)"},
+                {"12", "x9 (1920p)"},
+                {"13", "x9 (2080p)"},
                 {NULL, NULL}
         },
         "1",

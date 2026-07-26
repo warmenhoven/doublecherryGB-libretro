@@ -248,13 +248,14 @@ else ifeq ($(platform), psp1)
 
 # Vita
 else ifeq ($(platform), vita)
-	TARGET := $(TARGET_NAME)_libretro_$(platform).a
-	CC = arm-vita-eabi-gcc$(EXE_EXT)
-	CXX = arm-vita-eabi-g++$(EXE_EXT)
-	AR = arm-vita-eabi-ar$(EXE_EXT)
-   STATIC_LINKING = 1
-	CFLAGS += -DVITA -fno-short-enums
-    CXXFLAGS += -DVITA -fno-short-enums
+    TARGET := $(TARGET_NAME)_libretro_$(platform).a
+    CC = arm-vita-eabi-gcc$(EXE_EXT)
+    CXX = arm-vita-eabi-g++$(EXE_EXT)
+    AR = arm-vita-eabi-ar$(EXE_EXT)
+    STATIC_LINKING = 1
+    DISABLE_SOCKETS := 1
+    CFLAGS += -DVITA -fno-short-enums -DDISABLE_SOCKETS
+    CXXFLAGS += -DVITA -fno-short-enums -DDISABLE_SOCKETS
 
 # CTR (3DS)
 else ifeq ($(platform), ctr)
