@@ -53,11 +53,10 @@ public:
 private:
     std::string mobile_adapter_gb_custom_server_file_path = "/mobile_adapter_gb_custom_server_config.ini";
 
-    alignas(64) struct mobile_adapter m_adapter;
-    alignas(64) std::string m_target_number;
+    struct mobile_adapter m_adapter;
+    std::string m_target_number;
     std::string m_local_number;
 
-    // --- REIHENFOLGE ANGEPASST FÜR KONSTRUKTOR-INITIALISIERUNGLISTE (-Wreorder Fix) ---
     enum mobile_adapter_device m_device_color;
     std::string m_dns_ip;
     uint16_t m_dns_port;

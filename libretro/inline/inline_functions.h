@@ -1778,9 +1778,10 @@ static void check_variables(void)
         }
     }
 
+#ifndef DISABLE_SOCKETS
     if (mobile_adapter_enabled && mobile_adapter)
         mobile_adapter->update_options_from_libretro(environ_cb);
-
+#endif
 
     // ----------------------------------------------------
     // 7. Screen Placement & Audio Routing (Multiplayer Only)

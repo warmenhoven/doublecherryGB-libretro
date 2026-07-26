@@ -47,7 +47,7 @@ SOURCES_CXX := \
     $(CORE_DIR)/libretro/DoubleCherryEngine/Netplay/NetPacketSendHandler.cpp \
     $(CORE_DIR)/libretro/DoubleCherryEngine/Netplay/NetpacketHandler/PokemonTcgNetpacketHandler.cpp
 
-# Base C sources (ohne Sockets)
+# Base C sources (without Sockets)
 SOURCES_C := \
     $(LIBRETRO_COMM_DIR)/encodings/encoding_utf.c \
     $(LIBRETRO_COMM_DIR)/encodings/encoding_crc32.c \
@@ -66,8 +66,8 @@ SOURCES_C := \
     $(LIBRETRO_COMM_DIR)/streams/file_stream.c \
     $(LIBRETRO_COMM_DIR)/vfs/vfs_implementation.c
 
-# NETZWERK- & MOBILE-ADAPTER (Wird auf der PS2 DEAKTIVIERT)
-ifneq ($(platform), ps2)
+# NETZWERK- & MOBILE-ADAPTER (disabled on PS and PS Vita, because of build issues)
+ifeq ($(filter $(platform), ps2 vita),)
     SOURCES_CXX += $(CORE_DIR)/gb_core/linkcable/Mobile_Adapter_GB.cpp
 
     SOURCES_C += \
