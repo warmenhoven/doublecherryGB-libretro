@@ -48,7 +48,6 @@ public:
     std::vector<uint8_t> m_config;
     std::string m_configPath;
 
-
     std::map<unsigned, SocketState> m_sockets;
 
 private:
@@ -58,14 +57,17 @@ private:
     alignas(64) std::string m_target_number;
     std::string m_local_number;
 
-    std::string m_dns_ip;
-    std::string m_relay_ip;
+    // --- REIHENFOLGE ANGEPASST FÜR KONSTRUKTOR-INITIALISIERUNGLISTE (-Wreorder Fix) ---
     enum mobile_adapter_device m_device_color;
+    std::string m_dns_ip;
     uint16_t m_dns_port;
-    uint16_t m_relay_port;
-    uint8_t m_slave_SB;
     bool m_use_relay = false;
+    std::string m_relay_ip;
+    uint16_t m_relay_port;
     bool m_show_own_phonenumber_at_startup;
+    // -----------------------------------------------------------------------------------
+
+    uint8_t m_slave_SB;
     bool already_showed_phone_number;
     bool persistent_relay_token_enabled = true;
     bool login_logged = false;

@@ -42,11 +42,13 @@ struct retro_core_option_v2_category option_cats_us[] = {
       "Multiplayer",
       "Settings for 2-16 Players"
       },
+#ifndef DISABLE_SOCKETS
 {
     "Gameboy Mobile Adapter",
     "Gameboy Mobile Adapter",
     "Settings for Gameboy Mobile Adapter Emulation"
     },
+#endif
 {
     "Developer",
     "Developer",
@@ -660,6 +662,7 @@ static struct retro_core_option_v2_definition core_options_us[] = {
         "0",
     },
 
+#ifndef DISABLE_SOCKETS
     //******************** MOBILE ADAPTER OPTIONS *********************************
     {
         "dcgb_mobile_adatper_enabled",
@@ -773,7 +776,7 @@ static struct retro_core_option_v2_definition core_options_us[] = {
     },
     "1",
 },
-
+#endif
 
     //******************** DEVELOPER OPTIONS *********************************
     {

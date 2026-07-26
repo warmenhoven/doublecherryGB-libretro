@@ -78,13 +78,14 @@ Mobile_Adapter_GB::~Mobile_Adapter_GB()
 
     for (auto& [id, state] : m_sockets) {
         if (state.fd >= 0) {
+#if !defined(VITA) && !defined(__vita__) && !defined(DISABLE_SOCKETS)
             shutdown(state.fd, 2);
+#endif
             socket_close(state.fd);
             state.fd = -1;
         }
     }
     m_sockets.clear();
-
 }
 
 void Mobile_Adapter_GB::ensureCustomIniExists(const std::string& systemDir)

@@ -233,7 +233,7 @@ else ifeq ($(platform), ps2)
 	AR = mips64r5900el-ps2-elf-ar$(EXE_EXT)
    STATIC_LINKING = 1
    OLD_GCC = 1
-	FLAGS += -G0 -O3 -DSKIP_COLOR_CORRECTION
+	FLAGS += -G0 -O3 -DSKIP_COLOR_CORRECTION -DDISABLE_SOCKETS
 
 # PSP
 else ifeq ($(platform), psp1)

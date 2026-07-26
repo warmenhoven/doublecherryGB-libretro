@@ -1,4 +1,7 @@
-﻿#include "linkcable/include/Mobile_Adapter_GB.hpp"
+﻿#ifndef DISABLE_SOCKETS
+    #include "linkcable/include/Mobile_Adapter_GB.hpp"
+#endif
+
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE 1 // for fopencookie hack in serialize_size
 #endif
@@ -256,12 +259,18 @@ bool retro_load_game(const struct retro_game_info *info)
     std::string config_path = (system_dir && strlen(system_dir) > 0) ? std::string(system_dir) + "/" : "";
     config_path += "mobile_adapter_gb_config.bin";
 
+#ifndef DISABLE_SOCKETS
     mobile_adapter = new Mobile_Adapter_GB(v_gb[0], config_path);
 
     if (mobile_adapter_enabled) {
         v_gb[0]->set_linked_target(mobile_adapter);
-    }else
+    } else {
         auto_config_1p_link();
+    }
+#else
+    // Auf Plattformen ohne Netzwerksupport (wie PS2) direkt auf Fallback/1P-Link gehen:
+    auto_config_1p_link();
+#endif
 
    return true;
 }
@@ -470,7 +479,11 @@ void checkForJoinedMultiplayer()
 
 void run_main_loop()
 {
-    if (mobile_adapter_enabled && mobile_adapter) mobile_adapter->update();
+
+#ifndef DISABLE_SOCKETS
+    if (mobile_adapter_enabled && mobile_adapter)
+        mobile_adapter->update();
+#endif
 
     if (!infrared_lockstep)
     {
