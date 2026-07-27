@@ -8,7 +8,7 @@
 
 
 **author:** Tim Oelrichs<br>
-**email:** timoelrichs@gmail.com<br>
+
 
 
 > DoubleCherryGB is an open source (GPLv3) GB/GBC emulator with up to 16 Player support, based on the TGBDual libretro core by GIGO and Hii.
@@ -59,6 +59,7 @@ you can install it [RetroArch][retroarch] manually like so:
 ### Gameboy Peripherals Emulation
 - Gameboy Printer Emulation with PNG-Print and DIN A4, DIN A5, DIN A6 upscale
 - Gameboy 4 Player Adapter (DMG-07)
+- Mobile Adapter GB Emulation
 - [TV REMOTE](#TV-REMOTE) Emulation
 - [BARCODE BOY](#BARCODE-BOY) Emulation full support (all barcodes are hardcoded, use the numkeys 0-9 for selection)
 - [BARCODE TAISEN BARDIGUN](#BARCODE-TAISEN-BARDIGUN) Emulation full Support (all barcodes are hardcoded, use the numkeys 0-8 for selection)
@@ -98,7 +99,7 @@ For Multiplayer you have to increase the amount of emulated Gameboy in the core 
 
 DoubleCherryGB has a buildin virtual linkcable device that can trade Pokemon. I called it the PKMBuddy Boy.
 
-- If you don't own a Mew it will trade you a Lv 5 Mew. 
+- If you don't own a Mew/Celebi it will trade you a Lv 5 Mew/Celebi. 
 - If you already own a Mew it will give you weekly Pokemon Distribution Events with a choice of different Pokemon. See table below. 
 - You can also use this to trade pokemon back for trading evolutions.
 
@@ -133,10 +134,12 @@ The netpacket api is activated when you set emulated gameboys to 1.
 This is only meant for trading purposes and may be too slow for actual Multiplayer.
 For Multiplayer-sessions please set the amount of emulated gameboys to 2 or higher, because this will activate the old savestate sync for lagfree netplay.  
 
-Trading should work with other GB/GBC Games as well:
+Trading/Battling works on:
 
-- Pokemon R/B/Y/S/G/C
-- Pokemon Trading Card Game 1 and 2
+- Pokemon R/B/Y/S/G/C (trading works better than battling, which can be unstable)
+- Pokemon Trading Card Game 1 and 2  (Hacky workaround, may lag a bit, but it works)
+
+Untested or not working yet: 
 - RoboPon Sun/Star
 - Medarot 1/2/3 Kabuto/Kuwagata/Parts Collection
 - Telefang Speed/Power
@@ -199,6 +202,37 @@ If you are playing on a handheld you can activate the "autorandom IR Signal" in 
 - Doraemon Memories - Nobita no Omoide Daibouken - not working
 
 <br>
+
+## Mobile Adapter GB - ReonReady
+
+DoubleCherryGB implements the libmobile library by pfero for emulating the japanese exclusive Mobile Adapter GB.
+
+Team Reon is currently working on creating custom servers and translating roms to bringing back the experinnce. As this is still a work in progress (WIP), there are no public servers available yet. However, you can host one yourself by cloning https://github.com/REONTeam/reon.
+
+**Setup Instructions**
+ 1. Make sure to configure the settings in the **Core Options**.
+
+ 2. If you want to connect to a server on another device, set the option to **Custom** and edit the **mobile_adapter_gb_custom_server_config.ini** file located in your RetroArch system folder:
+
+```
+dns_ip = "INSERT_IP_FROM_YOUR_CUSTOM_SERVER"
+dns_port = "INSERT_YOUR_CONFIGURED_PORT"
+relay_ip = "INSERT_IP_FROM_YOUR_CUSTOM_SERVER"
+relay_port = "INSERT_YOUR_CONFIGURED_PORT"
+```
+
+Games with Mobile Adapter GB support: 
+
+- Pokemon Crystal (Japan or mobile adapter patched)
+- Game Boy Wars 3
+- Hello Kitty Happy House  
+- Mobile Golf 
+- Mobile Trainer   
+- Net de Get Note: The MBC6 chip is not yet emulated by DoubleCherryGB)
+
+❤️ Many thanks to pfero for creating libmobile, and to the entire Team Reon for their hard work and dedication in making the Mobile Adapter GB accessible to everyone!
+
+<br>
  
 ## BARCODE BOY
 
@@ -243,6 +277,12 @@ led1_map = "1"
 
 <br>
 
+## Faceball 2000 - 16 Player Ring-Link Cable
+
+DoubleCherryGB is happy to be the first emulator to support the 16-player Ring-Link setup for Faceball 2000.
+
+<br>
+
 ## Support DoubleCherryGB
 I have tons of ideas—but not nearly enough time to bring them all to life. Your support helps me dedicate more time to development and make DoubleCherry the cherry on top of your retro gaming experience 🍒
 
@@ -251,6 +291,7 @@ https://www.buymeacoffee.com/timoelrichs<br>
 
 Thanks to
 - Shonumi for doing the research and technical documentation for Gameboy and many peripherals/accessories/add-ons  https://shonumi.github.io/index.html
+- pfero and the entire TeamReon :heart:
 - PSYRaven for the netpacket api and davidgf for his implemtation on gpSP
 - Ninoh-Fox for his work on Koriki cfw
 - GIGO and Hii for making TGBDual and the libretro port
