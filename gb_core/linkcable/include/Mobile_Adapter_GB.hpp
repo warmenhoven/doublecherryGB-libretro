@@ -1,12 +1,9 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 #pragma once
 
-#include <chrono>
-#include <utility>
 #include <vector>
 #include <string>
 #include <map>
-#include <memory>
 
 extern "C" {
 #include <libretro.h>
@@ -16,13 +13,14 @@ extern "C" {
 
 #include "../gb_core/gb.h"
 
-// Konstanten für die Game Boy Color Hardware-Uhr zur Netzwerk-Zeitsynchronisation
+
 static constexpr uint32_t GBC_CPU_CLOCK_NORMAL = 4194304;
 static constexpr uint32_t GBC_CPU_CLOCK_DOUBLE = 8388608;
 static constexpr uint32_t GBC_TICKS_PER_MS_NORMAL = 4194;
 static constexpr uint32_t GBC_TICKS_PER_MS_DOUBLE = 8388;
 
-class Mobile_Adapter_GB : public I_Linkcable_Target
+class Mobile_Adapter_GB final
+    : public I_Linkcable_Target
 {
 public:
     struct SocketState {
@@ -32,7 +30,6 @@ public:
     explicit Mobile_Adapter_GB(gb* target_gb, std::string configPath = "mobile_adapter_gb_config.bin");
     ~Mobile_Adapter_GB() override;
 
-    // I_Linkcable_Target Interface
     byte receive_from_linkcable(byte data) override;
 
     void set_double_speed(bool enabled);
@@ -64,7 +61,6 @@ private:
     std::string m_relay_ip;
     uint16_t m_relay_port;
     bool m_show_own_phonenumber_at_startup;
-    // -----------------------------------------------------------------------------------
 
     uint8_t m_slave_SB;
     bool already_showed_phone_number;
