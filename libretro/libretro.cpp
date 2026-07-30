@@ -379,8 +379,10 @@ void retro_unload_game(void)
     render.clear();
     v_serializable_devices.clear();
 
+#ifndef DISABLE_SOCKETS
     delete mobile_adapter;
     mobile_adapter = nullptr;
+#endif
 
     libretro_supports_persistent_buffer = false;
 
