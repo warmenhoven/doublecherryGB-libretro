@@ -93,6 +93,8 @@ set(SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/extern/libretro-common/compat/compat_strcasestr.c
         ${CMAKE_CURRENT_SOURCE_DIR}/extern/libretro-common/streams/file_stream.c
         ${CMAKE_CURRENT_SOURCE_DIR}/extern/libretro-common/vfs/vfs_implementation.c
+        gb_core/linkcable/include/PKBuddy/pokemon_moves.h
+        gb_core/linkcable/include/PKBuddy/pokemon_species.h
 )
 
 # Bibliothek erstellen

@@ -61,6 +61,7 @@ public:
 		PATCH_DATA,
 		INIT_TRADE,
 		DO_TRADE,
+		TRADE_CANCEL,
 	};
 
 	//I_savestate

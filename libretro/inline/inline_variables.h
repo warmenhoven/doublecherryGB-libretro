@@ -229,7 +229,7 @@ size_t emulated_gbs = 1;
 size_t emulated_gbs_before_playerjoined_bypress = 1;
 char cart_name[18];
 
-bool pkm_buddy_boy_auto_trade_mew = false;
+bool pkm_buddy_boy_auto_trade_mew = true;
 
 int audio_2p_mode = 0;
 // used to make certain core options only take effect once on core startup

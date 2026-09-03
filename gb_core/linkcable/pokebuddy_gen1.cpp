@@ -323,6 +323,7 @@ byte pokebuddy_gen1::handle_gen2(byte data) {
             generate_data_block_gen2();
 
             if (pkm_buddy_boy_auto_trade_mew && (!has_owned_mew_gen2() || !has_owned_celebi()))
+        	//if ((!has_owned_mew_gen2() || !has_owned_celebi()))
             {
                 if (!has_owned_celebi())
                 {
@@ -462,8 +463,11 @@ byte pokebuddy_gen1::handle_gen2(byte data) {
 
         if (data == 0x00) return 0x00;
         if (data == 0x20) return 0x20;
-
-        // Fehlender return statement hinzugefügt
+		if (data == 0x7f) {
+			//Trade Cancel
+			current_state = TRADE_CANCEL;
+			return 0x7f;
+		}
         return 0x00;
     }
 
@@ -496,6 +500,15 @@ byte pokebuddy_gen1::handle_gen2(byte data) {
         }
 
         return data;
+    }
+    case TRADE_CANCEL:
+    {
+    	if (data == 0x7f) return 0x7f;
+    	if (data == 0x00) {
+    		reset();
+    		return 0xFE;
+    	}
+
     }
 
     default:

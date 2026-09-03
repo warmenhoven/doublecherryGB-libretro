@@ -1,5 +1,6 @@
 #pragma once
 #include "inline_pkbuddy_util.h"
+
 #include "stdlib.h" 
 
 void pokebuddy_gen1::generate_pk_event_party(int* dex_no, int* levels, int len) {
@@ -197,6 +198,7 @@ pokemon_gen2 pokebuddy_gen1::generate_pk_from_base_table_gen2(int index_id, unsi
 	generated_pkmn.species = index_id;
 	generated_pkmn.statusAilment = 0x00;
 	generated_pkmn.itemHeld = 0x00;
+	generated_pkmn.pokerus = 0x00;
 
 	set_unint16_to_bytes2(777, generated_pkmn.originalTrainerId);
 
@@ -268,7 +270,7 @@ void pokebuddy_gen1::insert_pokemon_into_next_slot_gen2(pokemon_gen2 pkm, std::s
 
 	unsigned char slot = (unsigned char)(DATA_BLOCK_gen2.species_list_size);
 
-	if (slot >= 5) return;
+	if (slot > 5) return;
 
 	insert_pokemon_into_slot_gen2(pkm, slot, nickname);
 	DATA_BLOCK_gen2.species_list_size++;

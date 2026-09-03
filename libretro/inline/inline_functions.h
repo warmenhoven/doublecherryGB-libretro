@@ -1497,7 +1497,7 @@ static void check_variables(void)
         }
     }
 
-    // Force Game Boy Color games to be detected as Game Boy Advance
+
     if ((val = get_var("dcgb_pkmbuddyboy_auto_mew"))) {
         bool newValue = static_cast<bool>(atoi(val));
         if (pkm_buddy_boy_auto_trade_mew != newValue) {
