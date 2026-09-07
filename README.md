@@ -93,21 +93,37 @@ For Multiplayer you have to increase the amount of emulated Gameboy in the core 
 
 <br>
 
-## Builtin Mew and Celebi Maschine and weekly GEN1 Pokemon Distributions 
+## Builtin Mew and Celebi Maschine and weekly  Pokemon Distributions 
 
 <img src="/assets/readme/pkbuddyboy.png">
 
-DoubleCherryGB has a buildin virtual linkcable device that can trade Pokemon. I called it the PKMBuddy Boy.
+DoubleCherryGB has a **built-in virtual link cable device** that can trade Pokémon. I called it the **PKMBuddy Boy**<br>
+Visit the Cable Club to trigger the PKMBuddy Boy Trade.
+You can uses the Numkeys on your keyboard or the SELECT Button to change Pokemon you want to get.
 
-- If you don't own a Mew/Celebi it will trade you a Lv 5 Mew/Celebi. 
-- If you already own a Mew it will give you weekly Pokemon Distribution Events with a choice of different Pokemon. See table below. 
-- You can also use this to trade pokemon back for trading evolutions.
+---
 
-You can uses the Numkeys on your keyboard or the SELECT Button to change Pokemon you want to get. 
+### Key Features
+
+* **Auto Mew / Celebi Distribution**
+  If you don't own a Mew or Celebi, it will trade you a **Lv 5 Mew/Celebi**.
+* **Weekly Pokémon Distribution Events**
+  If you already own a Mew, it will offer **weekly Pokémon Distribution Events** with a selection of different Pokémon *(see table below)*.
+  > **Note:** Mew Detection might not work with all game versions yet, as different versions save Pokédex data differently. If it does not work for you, disable the "Auto Mew" option under:
+  > `Core Options` → `GameBoy Linkcable Emulation`
+* **Trade Evolutions**
+  You can also use this feature to trade Pokémon back and forth to trigger **trade-based evolutions**.
+
+* **Gen 2 PCNYa Events**
+  For Gen 2, I recreated many of the **PCNYa Distribution Events** *(still a work in progress)*.
+    * **Reference:** [Bulbapedia - List of PCNY event Pokémon distributions in Generation II](https://bulbapedia.bulbagarden.net/wiki/List_of_PCNY_event_Pok%C3%A9mon_distributions_in_Generation_II)
+
+* **Time Capsule (Gen 1 & Gen 2)**
+  You can now also access Gen 1 events in *Gold*, *Silver*, and *Crystal* via the **Time Capsule** by changing the **Trading Mode** by pressing the **`LT` / `L2` -Button**.
 
 It's already preconfigured. Leave emulated Gameboys at 1 and just visit the cable club ingame.
 
-Weekly Gen1 Pokemon Distribution List
+Weekly Pokemon Distribution List
 https://docs.google.com/spreadsheets/d/1SMcpTz_4Mwo1eVAKWB3AbaLHJNthkB5sKHlOPnQw2UI/edit?gid=0#gid=0
 
 <img src="/assets/readme/screenshots/gotMew.png">
