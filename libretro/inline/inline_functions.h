@@ -589,7 +589,7 @@ void auto_config_1p_link() {
     if (!strncmp(cart_name, "POKEMON", 7 ) || !strncmp(cart_name, "PM_CRYSTAL", 10))
     {
         
-        pokebuddy_gen1* pkbuddy = new pokebuddy_gen1(v_gb);
+        PK_Buddy_Boy* pkbuddy = new PK_Buddy_Boy(v_gb);
         hotkey_target = pkbuddy;
         v_serializable_devices.push_back(pkbuddy);
 
@@ -1950,6 +1950,13 @@ void check_special_hotkey() {
         key_state = input_state_cb(0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_START);
         dcgb_hotkey_pressed = key_state ? 0x30 : 0x10;
         return; 
+    }
+
+    key_state = input_state_cb(0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L2);
+    if (key_state)
+    {
+        dcgb_hotkey_pressed = key_state ? 0x40 : 0x20;
+        return;
     }
 
     dcgb_hotkey_pressed = -1; 

@@ -170,6 +170,7 @@ byte cpu::read_direct(word adr)
 	case 3:
 		return ref_gb->get_mbc()->get_rom()[adr];
 	case 4:
+			if ((ref_gb->get_regs()->STAT & 0x03) == 0x03) return 0xFF; //VRAM inaccessuvke during mode3
 		return vram_bank[adr&0x1FFF];
 	case 5:
 		if (ref_gb->get_mbc()->is_ext_ram())
@@ -217,6 +218,7 @@ void cpu::write(word adr,byte dat)
 		ref_gb->get_mbc()->write(adr,dat);
 		break;
 	case 4:
+		if ((ref_gb->get_regs()->STAT & 0x03) == 0x03) return; //VRAM inaccessuvke during mode3
 		vram_bank[adr&0x1FFF]=dat;
 		break;
 	case 5:

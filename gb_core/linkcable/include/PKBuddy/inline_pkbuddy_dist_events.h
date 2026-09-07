@@ -4,7 +4,7 @@
 #include "pokemon_moves.h"
 #include "pokemon_species.h"
 
-void pokebuddy_gen1::add_event_pokemon_to_datablock() {
+void PK_Buddy_Boy::add_event_pokemon_to_datablock() {
 
 	time_t now = time(0);
 	tm* ltm = localtime(&now);
@@ -1607,7 +1607,7 @@ void pokebuddy_gen1::add_event_pokemon_to_datablock() {
 
 }
 
-void pokebuddy_gen1::add_event_pokemon_to_datablock_gen2() {
+void PK_Buddy_Boy::add_event_pokemon_to_datablock_gen2() {
 
 	time_t now = time(0);
 	tm* ltm = localtime(&now);

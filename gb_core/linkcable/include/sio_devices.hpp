@@ -10,7 +10,7 @@
 #include "barcode_taisen_bardigun.hpp"
 #include "faceball2000_cable.hpp"
 #include "power_antenna.hpp"
-#include "pokebuddy_gen1.hpp"
+#include "PK_Buddy_Boy.hpp"
 #include "gameboy_printer.hpp"
 #include "game_and_watch_gallery_unlocker.hpp"
 #include "Mobile_Adapter_GB.hpp"

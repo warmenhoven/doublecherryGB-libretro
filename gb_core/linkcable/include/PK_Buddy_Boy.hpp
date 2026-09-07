@@ -38,10 +38,10 @@ enum pkm_generation {
 };
 
 
-class pokebuddy_gen1 final : public I_Linkcable_Target, public I_dcgb_hotkey_target, public I_Savestate {
+class PK_Buddy_Boy final : public I_Linkcable_Target, public I_dcgb_hotkey_target, public I_Savestate {
 
 public:
-	pokebuddy_gen1(std::vector<gb*> gbs);
+	PK_Buddy_Boy(std::vector<gb*> gbs);
 
 	byte receive_from_linkcable(byte data) override;
 	void reset();
@@ -52,6 +52,8 @@ public:
 	{
 		OPEN_LINK,
 		WAIT,
+		WAIT_TIME_CAPSULE,
+		CANCEL_TIME_CAPULE_WRONG_MODE,
 		SELECT_OPTIONS,
 		TRADECENTER,
 		TRADE_TABLE,
@@ -71,7 +73,11 @@ public:
 	void serialize(serializer& s) override;
 
 private:
-
+	enum class TRADING_MODE {
+		GEN_1,
+		GEN_2,
+		GEN_2_TIME_CAPSULE
+	} trading_mode;
 	byte init_and_set_pkm_game_generation(byte data);
 	byte handle_gen1(byte data);
 	byte handle_gen2(byte data);

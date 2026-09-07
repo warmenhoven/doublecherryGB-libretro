@@ -236,7 +236,7 @@ bool retro_load_game(const struct retro_game_info *info)
     log_cb(RETRO_LOG_INFO, "AFTER INIT GBS\n");
     // Cartridge-Infos
     set_cart_name(rom_data);
-    is_gbc_rom = v_gb[0]->get_rom()->get_info()->gb_type == 3 || v_gb[0]->get_rom()->get_info()->gb_type == 4  ;
+    is_gbc_rom = v_gb[0]->get_rom()->get_info()->gb_type == 3 || v_gb[0]->get_rom()->get_info()->gb_type == 4;
 
 
     // Multiplayer-Setup

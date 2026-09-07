@@ -4,27 +4,27 @@
 
 extern void display_message(std::string msg_str);
 
-void pokebuddy_gen1::set_unint32_to_bytes3(int input, unsigned char* output_array)
+void PK_Buddy_Boy::set_unint32_to_bytes3(int input, unsigned char* output_array)
 {
 	output_array[2] = (unsigned char)((input) & 0xFF);
 	output_array[1] = (unsigned char)(((input) >> 8) & 0xFF);
 	output_array[0] = (unsigned char)(((input) >> 16) & 0xFF);
 }
 
-void pokebuddy_gen1::set_unint16_to_bytes2(int input, unsigned char* output_array)
+void PK_Buddy_Boy::set_unint16_to_bytes2(int input, unsigned char* output_array)
 {
 	output_array[1] = (unsigned char)((input) & 0xFF);
 	output_array[0] = (unsigned char)(((input) >> 8) & 0xFF);
 }
 
-unsigned int pokebuddy_gen1::bytes3_to_uint32(unsigned char* output_array)
+unsigned int PK_Buddy_Boy::bytes3_to_uint32(unsigned char* output_array)
 {
 	unsigned int ret = 0;
 	return ret | output_array[2] | output_array[1] | output_array[0];
 
 }
 
-unsigned int pokebuddy_gen1::bytes2_to_uint16(unsigned char* output_array)
+unsigned int PK_Buddy_Boy::bytes2_to_uint16(unsigned char* output_array)
 {
 	unsigned int ret = 0;
 	return ret | output_array[2] | output_array[1] | output_array[0];
@@ -32,7 +32,7 @@ unsigned int pokebuddy_gen1::bytes2_to_uint16(unsigned char* output_array)
 }
 
 
-unsigned char pokebuddy_gen1::convert_ASCII2TABLE(unsigned char c, bool toUpper) {
+unsigned char PK_Buddy_Boy::convert_ASCII2TABLE(unsigned char c, bool toUpper) {
 
 	//A-Z && a-z
 	if (c >= 0x41 && c <= 0x5A) return (unsigned char)(c + 63);
@@ -60,11 +60,11 @@ unsigned char pokebuddy_gen1::convert_ASCII2TABLE(unsigned char c, bool toUpper)
 	return 0xFF;
 }
 
-std::string pokebuddy_gen1::convert_string_to_name(std::string str) {
+std::string PK_Buddy_Boy::convert_string_to_name(std::string str) {
 	return convert_string_to_name(str, false);
 }
 
-std::string pokebuddy_gen1::convert_string_to_name(std::string str, bool toUpper) {
+std::string PK_Buddy_Boy::convert_string_to_name(std::string str, bool toUpper) {
 
 
 	int length = str.length() <= 10 ? str.length() : 10;
@@ -84,7 +84,7 @@ std::string pokebuddy_gen1::convert_string_to_name(std::string str, bool toUpper
 	return std::string(name, 11);
 }
 
-unsigned char pokebuddy_gen1::convert_TABLE2ASCII(unsigned char c) {
+unsigned char PK_Buddy_Boy::convert_TABLE2ASCII(unsigned char c) {
 
 	//A-Z && a-z
 	if (c >= 0x41 + 63 && c <= 0x5A + 63) return (unsigned char)(c - 63);
@@ -114,7 +114,7 @@ unsigned char pokebuddy_gen1::convert_TABLE2ASCII(unsigned char c) {
 	return 0xFF;
 }
 
-std::string pokebuddy_gen1::convert_name_to_string(std::string str) {
+std::string PK_Buddy_Boy::convert_name_to_string(std::string str) {
 
 	int length = str.length() <= 10 ? str.length() : 10;
 	char name[11];
@@ -130,9 +130,11 @@ std::string pokebuddy_gen1::convert_name_to_string(std::string str) {
 }
 
 
-bool pokebuddy_gen1::has_owned_mew() {
+bool PK_Buddy_Boy::has_owned_mew() {
 
 	{
+		if (trading_mode == TRADING_MODE::GEN_2_TIME_CAPSULE) return has_owned_mew_gen2();
+
 		uint16_t address = is_pokemon_yellow_cartdrige()
 						 ? 0xD308
 						 : 0xD309;
@@ -146,7 +148,7 @@ bool pokebuddy_gen1::has_owned_mew() {
  
 }
 
-bool pokebuddy_gen1::has_owned_mew_gen2() {
+bool PK_Buddy_Boy::has_owned_mew_gen2() {
 
 	bool isPokemonCrytal = (strncmp(cart_name, "PM_CRYSTAL", 10) == 0);
 	byte own = 0;
@@ -158,7 +160,7 @@ bool pokebuddy_gen1::has_owned_mew_gen2() {
 	return ((own >> 6) & 1);
 }
 
-bool pokebuddy_gen1::has_owned_celebi() {
+bool PK_Buddy_Boy::has_owned_celebi() {
 	bool isPokemonCrytal = (strncmp(cart_name, "PM_CRYSTAL", 10) == 0);
 	byte own = 0;
 	if (isPokemonCrytal)

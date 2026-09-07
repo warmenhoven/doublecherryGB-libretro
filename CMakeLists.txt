@@ -60,7 +60,7 @@ set(SOURCES
         ${CORE_DIR}/gb_core/linkcable/gameboy_printer.cpp
         ${CORE_DIR}/gb_core/linkcable/game_and_watch_gallery_unlocker.cpp
         ${CORE_DIR}/gb_core/linkcable/power_antenna.cpp
-        ${CORE_DIR}/gb_core/linkcable/pokebuddy_gen1.cpp
+        ${CORE_DIR}/gb_core/linkcable/PK_Buddy_Boy.cpp
         ${CORE_DIR}/gb_core/linkcable/Mobile_Adapter_GB.cpp
 
         ${CORE_DIR}/gb_core/infrared/pikachu_2_gs.cpp
